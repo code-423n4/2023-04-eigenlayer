@@ -155,11 +155,61 @@ and/or
 
 | Contract | SLOC | Purpose | Libraries used |  
 | ----------- | ----------- | ----------- | ----------- |
-| [contracts/folder/sample.sol](contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| [src/contracts/pods/EigenPod.sol](src/contracts/pods/EigenPod.sol) | 205 | The implementation contract used for restaking beacon chain ETH on EigenLayer | [`@openzeppelin-upgrades/*`](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) |
+| [src/contracts/pods/EigenPodPausingConstants.sol](src/contracts/pods/EigenPodPausingConstants.sol) | 8 | Constants shared between 'EigenPod' and 'EigenPodManager' contracts | N/A |
+| [src/contracts/pods/DelayedWithdrawalRouter.sol](src/contracts/pods/DelayedWithdrawalRouter.sol) | 99 | Used for controlling withdrawals of ETH from EigenPods | [`@openzeppelin-upgrades/*`](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) |
+| [src/contracts/pods/EigenPodManager.sol](src/contracts/pods/EigenPodManager.sol) | 114 | The contract used for creating and managing EigenPods | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts), [`@openzeppelin-upgrades/*`](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) |
+| [src/contracts/permissions/Pausable.sol](src/contracts/permissions/Pausable.sol) | 57 | Adds pausability to a contract, implemented using bit switches | N/A |
+| [src/contracts/permissions/PauserRegistry.sol](src/contracts/permissions/PauserRegistry.sol) | 32 | Defines pauser & unpauser roles + modifiers to be used elsewhere | N/A |
+| [src/contracts/libraries/Merkle.sol](src/contracts/libraries/Merkle.sol) | 66 | Computes Merkle roots and checks proofs of inclusion | adapted from [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/libraries/Endian.sol](src/contracts/libraries/Endian.sol) | 15 | Flips Endianness of uint64's | N/A |
+| [src/contracts/libraries/BeaconChainProofs.sol](src/contracts/libraries/BeaconChainProofs.sol) | 150 | Utility library for parsing and PHASE0 beacon chain block headers | N/A |
+| [src/contracts/strategies/StrategyBase.sol](src/contracts/strategies/StrategyBase.sol) | 102 | Base implementation of `IStrategy` interface; holds a single token | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts), [`@openzeppelin-upgrades/*`](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) |
+| [src/contracts/core/StrategyManager.sol](src/contracts/core/StrategyManager.sol) | 414 | The primary entry- and exit-point for funds into and out of EigenLayer. | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts), [`@openzeppelin-upgrades/*`](https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable) |
+| [src/contracts/core/StrategyManagerStorage.sol](src/contracts/core/StrategyManagerStorage.sol) | 34 | Storage variables for the `StrategyManager` contract. | N/A |
+| [src/contracts/interfaces/ISlasher.sol](src/contracts/interfaces/ISlasher.sol) | 11 | Interface for Slasher contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IPausable.sol](src/contracts/interfaces/IPausable.sol) | 4 | Interface for Pausable contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IBeaconChainOracle.sol](src/contracts/interfaces/IBeaconChainOracle.sol) | 3 | Interface for BeaconChainOracle contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IStrategy.sol](src/contracts/interfaces/IStrategy.sol) | 4 | Generalized interface for Strategy contracts | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IStrategyManager.sol](src/contracts/interfaces/IStrategyManager.sol) | 18 | Interface for StrategyManager contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IETHPOSDeposit.sol](src/contracts/interfaces/IETHPOSDeposit.sol) | 4 | Interface for the [ETH2 Deposit Contract](https://etherscan.io/address/0x00000000219ab540356cbb839cbe05303d7705fa#code) | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IDelayedWithdrawalRouter.sol](src/contracts/interfaces/IDelayedWithdrawalRouter.sol) | 11 | Interface for the DelayedWithdrawalRouter contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IEigenPod.sol](src/contracts/interfaces/IEigenPod.sol) | 23 | Interface for EigenPods | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IEigenPodManager.sol](src/contracts/interfaces/IEigenPodManager.sol) | 7 | Interface for EigenPodManager contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IPauserRegistry.sol](src/contracts/interfaces/IPauserRegistry.sol) | 3 | Interface for PauserRegistry contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IDelegationManager.sol](src/contracts/interfaces/IDelegationManager.sol) | 4 | Interface for DelegationManager contract | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
+| [src/contracts/interfaces/IServiceManager.sol](src/contracts/interfaces/IServiceManager.sol) | 5 | Generalized interface for ServiceManager contracts | [`@openzeppelin/*`](https://github.com/OpenZeppelin/openzeppelin-contracts) |
 
 ## Out of scope
 
-*List any files/contracts that are out of scope for this audit.*
+src/contracts/interfaces/IDelegationTerms.sol
+src/contracts/interfaces/IVoteWeigher.sol
+src/contracts/interfaces/IPaymentManager.sol
+src/contracts/interfaces/IRegistry.sol
+src/contracts/interfaces/IQuorumRegistry.sol
+src/contracts/interfaces/IBLSPublicKeyCompendium.sol
+src/contracts/interfaces/IWhitelister.sol
+src/contracts/interfaces/IBLSRegistry.sol
+src/contracts/interfaces/IDelayedService.sol
+src/contracts/pods/BeaconChainOracle.sol
+src/contracts/libraries/BytesLib.sol
+src/contracts/libraries/MiddlewareUtils.sol
+src/contracts/libraries/StructuredLinkedList.sol
+src/contracts/libraries/BN254.sol
+src/contracts/strategies/StrategyWrapper.sol
+src/contracts/operators/MerkleDelegationTerms.sol
+src/contracts/core/Slasher.sol
+src/contracts/core/DelegationManager.sol
+src/contracts/core/DelegationManagerStorage.sol
+src/contracts/middleware/VoteWeigherBase.sol
+src/contracts/middleware/BLSSignatureChecker.sol
+src/contracts/middleware/RegistryBase.sol
+src/contracts/middleware/BLSRegistry.sol
+src/contracts/middleware/example/HashThreshold.sol
+src/contracts/middleware/VoteWeigherBaseStorage.sol
+src/contracts/middleware/PaymentManager.sol
+src/contracts/middleware/example/ECDSARegistry.sol
+src/contracts/middleware/BLSPublicKeyCompendium.sol
 
 # Additional Context
 
