@@ -105,10 +105,6 @@ Flow Docs
 * [EigenLayer Delegation Flow](docs/EigenLayer-delegation-flow.md)
 * [Middleware Registration Flow for Operators](docs/Middleware-registration-operator-flow.md)
 
-<a name="installation"/></a>
-## Installation and Running Tests / Analyzers
-
-
 <a name="scope"/></a>
 # Scope
 
@@ -183,23 +179,13 @@ src/contracts/core/DelegationManager.sol
 
 src/contracts/core/DelegationManagerStorage.sol
 
-src/contracts/middleware/VoteWeigherBase.sol
+src/contracts/middleware/*
 
-src/contracts/middleware/BLSSignatureChecker.sol
+src/test/*
 
-src/contracts/middleware/RegistryBase.sol
+script/*
 
-src/contracts/middleware/BLSRegistry.sol
-
-src/contracts/middleware/example/HashThreshold.sol
-
-src/contracts/middleware/VoteWeigherBaseStorage.sol
-
-src/contracts/middleware/PaymentManager.sol
-
-src/contracts/middleware/example/ECDSARegistry.sol
-
-src/contracts/middleware/BLSPublicKeyCompendium.sol
+certora/*
 
 
 # Additional Context
@@ -236,11 +222,8 @@ We’re also quite concerned with privilege escalation or the compromise of trus
 Another more specific concern we have is ensuring the correctness of the native restaking flow, i.e. “EigenPods” and their related functionality.  This is a rather complicated system with a lot of moving parts, and ensuring that our code accurately reflects the specification of the Consensus Layer is important.
 ```
 
-# Tests
-
-*Provide every step required to build the project from a fresh git clone, as well as steps to run the tests with a gas report.* 
-
-*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.*
+<a name="installation"/></a>
+# Tests & Installation
 
 ### Installation
 
