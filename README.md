@@ -67,6 +67,12 @@ Automated findings output for the contest can be found [here](add link to report
 
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
+EigenLayer has completed one security audit with Consensys Diligence and is currently concluding a second independent audit with Sigma Prime. We note that the scope for the Sigma Prime audit is expanded relative to the scope of this contest, and that the report provided here is in draft form, so it does not yet capture any mitigations taken by the team. All findings of the following audits are considered out-of-scope:
+
+- [Consensys Diligence audit](https://consensys.net/diligence/audits/2023/03/eigenlabs-eigenlayer/)
+- [Sigma Prime audit](audits/Sigma_Prime_Layr_Labs_Eigen_Layer_2_Security_Assessment_DRAFT.pdf)
+
+
 [ ⭐️ SPONSORS ADD INFO HERE ]
 
 # Overview
@@ -282,4 +288,4 @@ and/or
 and/or
 
 `surya mdreport surya_report.md ./src/contracts/**/*.sol`
- 
+
