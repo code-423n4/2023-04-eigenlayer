@@ -154,14 +154,7 @@ See the [Foundry Docs](https://book.getfoundry.sh/) for more info on installatio
 ```bash
 foundryup
 forge install
-npm install
 ```
-
-### Natspec Documentation
-
-You will notice that we also have hardhat installed in this repo. This is only used to generate natspec [docgen](https://github.com/OpenZeppelin/solidity-docgen). This is our workaround until foundry [finishes implementing](https://github.com/foundry-rs/foundry/issues/1675) the `forge doc` command.
-
-To generate the docs, run `npx hardhat docgen` (you may need to run `npm install` first). The output is located in `docs/docgen`
 
 ### Run Tests
 
@@ -176,20 +169,3 @@ The main command to run tests is:
 `solhint 'src/contracts/**/*.sol'`
 
 `slither .`
-
-### Generate Inheritance and Control-Flow Graphs
-
-first [install surya](https://github.com/ConsenSys/surya/)
-
-then run
-
-`surya inheritance ./src/contracts/**/*.sol | dot -Tpng > InheritanceGraph.png`
-
-and/or
-
-`surya graph ./src/contracts/middleware/*.sol | dot -Tpng > MiddlewareControlFlowGraph.png`
-
-and/or
-
-`surya mdreport surya_report.md ./src/contracts/**/*.sol`
-
