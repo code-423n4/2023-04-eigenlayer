@@ -232,9 +232,9 @@ src/contracts/middleware/BLSPublicKeyCompendium.sol
 - Does it use an oracle?:  Others; Part of it is designed to interface with an oracle, but the exact details of the oracle are still TBD, and the oracle itself is considered out-of-scope. It is a custom oracle for bringing Beacon Chain roots to the Execution Layer (for proving against Beacon Chain state).
 - Does the token conform to the ERC20 standard?:  
 - Are there any novel or unique curve logic or mathematical models?: N/A
-- Does it use a timelock function?:  
-- Is it an NFT?: 
-- Does it have an AMM?:   
+- Does it use a timelock function?:  no
+- Is it an NFT?: no
+- Does it have an AMM?: no
 - Is it a fork of a popular project?:   false
 - Does it use rollups?:   
 - Is it multi-chain?:  
