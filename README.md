@@ -39,8 +39,6 @@ EigenLayer has completed one security audit with Consensys Diligence and is curr
 - [Sigma Prime audit](audits/Sigma_Prime_Layr_Labs_Eigen_Layer_2_Security_Assessment_DRAFT.pdf)
 
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
-
 # Overview
 
 <a name="introduction"/></a>
@@ -73,8 +71,6 @@ Flow Docs
 
 <a name="scope"/></a>
 # Scope
-
-*List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*
 
 | Contract | SLOC | Purpose | Libraries used |  
 | ----------- | ----------- | ----------- | ----------- |
