@@ -247,31 +247,30 @@ src/contracts/middleware/BLSPublicKeyCompendium.sol
 
 ## Scoping Details 
 ```
-- If you have a public code repo, please share it here:  
-- How many contracts are in scope?:  25 
-- Total SLoC for these contracts?:  1560
+- If you have a public code repo, please share it here:  https://github.com/Layr-Labs/eigenlayer-contracts/
+- How many contracts are in scope?:  24 
+- Total SLoC for these contracts?:  1393
 - How many external imports are there?: 10 
 - How many separate interfaces and struct definitions are there for the contracts within scope?:  ~11 interfaces, ~10 structs
 - Does most of your code generally use composition or inheritance?:   Inheritance
 - How many external calls?:   6
 - What is the overall line coverage percentage provided by your tests?:  95
 - Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   true
-- Please describe required context:   We will be excluding some parts of the protocol from scope, but understanding their interfaces / broad purposes may still be necessary. We are also doing proofs against Beacon Chain state, so understanding the details of the Beacon Chain / Execution Layer will be very helpful.
-- Does it use an oracle?:  Others; Part of it is designed to interface with an oracle, but the exact details of the oracle are still TBD, and the oracle itself is considered out-of-scope. It is a custom oracle for bringing Beacon Chain roots to the Execution Layer (for proving against Beacon Chain state).
-- Does the token conform to the ERC20 standard?:  
+- Please describe required context:   We will be excluding some parts of the protocol from scope, but understanding their interfaces and/or broad purposes may still be necessary. We are also doing proofs against Beacon Chain state, so understanding the details of the Beacon Chain & Execution Layer will be very helpful.
+- Does it use an oracle?:  Others; Part of it is designed to interface with an oracle, but the exact details of the oracle are still TBD, and the oracle itself is considered out-of-scope. It is a custom oracle for bringing Beacon Chain roots to the Execution Layer (for proving against Beacon Chain state). The IBeaconChainOracle interface is included in the scope since the EigenPodManager will interact with this oracle for fetching state roots.
+- Does the token conform to the ERC20 standard?:  N/A
 - Are there any novel or unique curve logic or mathematical models?: N/A
 - Does it use a timelock function?:  no
 - Is it an NFT?: no
 - Does it have an AMM?: no
 - Is it a fork of a popular project?:   false
-- Does it use rollups?:   
-- Is it multi-chain?:  
+- Does it use rollups?:   no
+- Is it multi-chain?:  no
 - Does it use a side-chain?: false
 - Describe any specific areas you would like addressed. E.g. Please try to break XYZ.": We are most concerned with a loss of user funds.
-We’re aiming to launch with a very conservative design, in which all withdrawals from the system have a minimal enforced delay; we can respond to observations of any anomalous withdrawal behavior by pausing functionality and subsequently upgrading the contracts. The preliminary plan is to manually review user withdrawals until an automated solution is in place.
-As such, any method to defeat these safeguards (i.e. to avoid the enforced minimum withdrawal delay) would also be of significant concern.
+We’re aiming to launch with a very conservative design, in which all withdrawals from the system have a minimal enforced delay; we can then respond to observations of any anomalous withdrawal behavior by pausing functionality and subsequently upgrading the contracts. As such, any method to defeat these safeguards (i.e. to avoid the enforced minimum withdrawal delay) would also be of significant concern.
 We’re also quite concerned with privilege escalation or the compromise of trusted roles; our docs will provide more details on trusted roles and the design philosophy we’ve taken here.
-Another more specific concern we have is ensuring the correctness of the native restaking flow, i.e. “EigenPods” and their related functionality.  This is a rather complicated system with a lot of moving parts, and ensuring that our code accurately reflects the design of the consensus layer is important.
+Another more specific concern we have is ensuring the correctness of the native restaking flow, i.e. “EigenPods” and their related functionality.  This is a rather complicated system with a lot of moving parts, and ensuring that our code accurately reflects the specification of the Consensus Layer is important.
 ```
 
 # Tests
