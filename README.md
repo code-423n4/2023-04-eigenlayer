@@ -102,49 +102,6 @@ Flow Docs
 <a name="installation"/></a>
 ## Installation and Running Tests / Analyzers
 
-### Installation
-
-`foundryup`
-
-This repository uses Foundry as a smart contract development toolchain.
-
-See the [Foundry Docs](https://book.getfoundry.sh/) for more info on installation and usage.
-
-### Natspec Documentation
-
-You will notice that we also have hardhat installed in this repo. This is only used to generate natspec [docgen](https://github.com/OpenZeppelin/solidity-docgen). This is our workaround until foundry [finishes implementing](https://github.com/foundry-rs/foundry/issues/1675) the `forge doc` command.
-
-To generate the docs, run `npx hardhat docgen` (you may need to run `npm install` first). The output is located in `docs/docgen`
-
-### Run Tests
-
-Prior to running tests, you should set up your environment. At present this repository contains fork tests against ETH mainnet; your environment will need an `RPC_MAINNET` key to run these tests. See the `.env.example` file for an example -- two simple options are to copy the LlamaNodes RPC url to your `env` or use your own infura API key in the provided format.
-
-The main command to run tests is:
-
-`forge test -vv`
-
-### Run Static Analysis
-
-`solhint 'src/contracts/**/*.sol'`
-
-`slither .`
-
-### Generate Inheritance and Control-Flow Graphs
-
-first [install surya](https://github.com/ConsenSys/surya/)
-
-then run
-
-`surya inheritance ./src/contracts/**/*.sol | dot -Tpng > InheritanceGraph.png`
-
-and/or
-
-`surya graph ./src/contracts/middleware/*.sol | dot -Tpng > MiddlewareControlFlowGraph.png`
-
-and/or
-
-`surya mdreport surya_report.md ./src/contracts/**/*.sol`
 
 <a name="scope"/></a>
 # Scope
@@ -277,4 +234,52 @@ Another more specific concern we have is ensuring the correctness of the native 
 
 *Provide every step required to build the project from a fresh git clone, as well as steps to run the tests with a gas report.* 
 
-*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.* 
+*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.*
+
+### Installation
+
+
+This repository uses Foundry as a smart contract development toolchain.
+
+See the [Foundry Docs](https://book.getfoundry.sh/) for more info on installation and usage.
+
+`foundryup`
+
+`forge install`
+
+### Natspec Documentation
+
+You will notice that we also have hardhat installed in this repo. This is only used to generate natspec [docgen](https://github.com/OpenZeppelin/solidity-docgen). This is our workaround until foundry [finishes implementing](https://github.com/foundry-rs/foundry/issues/1675) the `forge doc` command.
+
+To generate the docs, run `npx hardhat docgen` (you may need to run `npm install` first). The output is located in `docs/docgen`
+
+### Run Tests
+
+Prior to running tests, you should set up your environment. At present this repository contains fork tests against ETH mainnet; your environment will need an `RPC_MAINNET` key to run these tests. See the `.env.example` file for an example -- two simple options are to copy the LlamaNodes RPC url to your `env` or use your own infura API key in the provided format.
+
+The main command to run tests is:
+
+`forge test -vv`
+
+### Run Static Analysis
+
+`solhint 'src/contracts/**/*.sol'`
+
+`slither .`
+
+### Generate Inheritance and Control-Flow Graphs
+
+first [install surya](https://github.com/ConsenSys/surya/)
+
+then run
+
+`surya inheritance ./src/contracts/**/*.sol | dot -Tpng > InheritanceGraph.png`
+
+and/or
+
+`surya graph ./src/contracts/middleware/*.sol | dot -Tpng > MiddlewareControlFlowGraph.png`
+
+and/or
+
+`surya mdreport surya_report.md ./src/contracts/**/*.sol`
+ 
