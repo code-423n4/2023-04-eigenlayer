@@ -183,33 +183,61 @@ and/or
 ## Out of scope
 
 src/contracts/interfaces/IDelegationTerms.sol
+
 src/contracts/interfaces/IVoteWeigher.sol
+
 src/contracts/interfaces/IPaymentManager.sol
+
 src/contracts/interfaces/IRegistry.sol
+
 src/contracts/interfaces/IQuorumRegistry.sol
+
 src/contracts/interfaces/IBLSPublicKeyCompendium.sol
+
 src/contracts/interfaces/IWhitelister.sol
+
 src/contracts/interfaces/IBLSRegistry.sol
+
 src/contracts/interfaces/IDelayedService.sol
+
 src/contracts/pods/BeaconChainOracle.sol
+
 src/contracts/libraries/BytesLib.sol
+
 src/contracts/libraries/MiddlewareUtils.sol
+
 src/contracts/libraries/StructuredLinkedList.sol
+
 src/contracts/libraries/BN254.sol
+
 src/contracts/strategies/StrategyWrapper.sol
+
 src/contracts/operators/MerkleDelegationTerms.sol
+
 src/contracts/core/Slasher.sol
+
 src/contracts/core/DelegationManager.sol
+
 src/contracts/core/DelegationManagerStorage.sol
+
 src/contracts/middleware/VoteWeigherBase.sol
+
 src/contracts/middleware/BLSSignatureChecker.sol
+
 src/contracts/middleware/RegistryBase.sol
+
 src/contracts/middleware/BLSRegistry.sol
+
 src/contracts/middleware/example/HashThreshold.sol
+
 src/contracts/middleware/VoteWeigherBaseStorage.sol
+
 src/contracts/middleware/PaymentManager.sol
+
 src/contracts/middleware/example/ECDSARegistry.sol
+
 src/contracts/middleware/BLSPublicKeyCompendium.sol
+
 
 # Additional Context
 
