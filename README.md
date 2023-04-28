@@ -1,6 +1,6 @@
 # EigenLayer contest details
 - Total Prize Pool: $90,500 USDC 
-  - HM awards: $63,750 USDC 
+  - HM awards: $56,250 USDC 
   - QA report awards: $7,500 USDC 
   - Gas report awards: $3,750 USDC 
   - Bot race awards: $7,500 USDC
