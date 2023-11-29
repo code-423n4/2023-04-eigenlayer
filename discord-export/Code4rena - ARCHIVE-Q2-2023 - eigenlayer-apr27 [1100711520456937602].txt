@@ -1,0 +1,1258 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q2-2023 / eigenlayer-apr27
+==============================================================
+
+[04/26/2023 09:22] paroxysm9999 (pinned)
+👋 Hello and welcome to the contest channel for the $90,500 USDC EigenLayer contest!
+
+📆 Contest opens 27 April 2023 04/27/2023 20:00 (20:00 UTC) and runs through  04 May 2023 05/04/2023 20:00 (20:00 UTC) (7 days).
+
+Please give a warm welcome to the EigenLayer team, particularly @TheyCallMeCosmic & @coldcolgate, who will be available for questions either here in the channel or via DM in the PDT timezone(s).
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+Contest Page: https://code4rena.com/contests/2023-04-eigenlayer-contest
+
+{Embed}
+https://code4rena.com/contests/2023-04-eigenlayer-contest
+Code4rena EigenLayer Contest
+$90,500 USDC
+27 April 2023—4 May 2023
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/c4-og-banner-0FCFA.png
+
+{Reactions}
+🥳 (9) 👋 (5) 10_10 
+
+[04/26/2023 09:22] paroxysm9999
+Pinned a message.
+
+
+[04/26/2023 09:22] paroxysm9999
+Let's please limit conversation until the contest begins. Thanks!
+
+{Reactions}
+😶 (15) 
+
+[04/27/2023 19:31] kartoonjoy (pinned)
+:hearteyesrobot: 🏎️  Automated findings output for the contest will be posted within 24 hours of contest opening. :hearteyesrobot: 🏎️
+
+{Reactions}
+thankyou (2) 
+
+[04/27/2023 20:27] theycallmecosmic (pinned)
+Hi everyone! We're stoked for this contest!
+I lead the smart contract team at EigenLayer and will be our primary contact for answering questions during the contest. @coldcolgate may be able to assist if I happen to be offline/unavailable.
+We're on PDT (GMT-7) timezone here, so may take a while to respond outside of normal work hours for this timezone.
+
+{Reactions}
+🔥 (16) 🚀 (2) 
+
+[04/27/2023 20:33] kartoonjoy
+Pinned a message.
+
+
+[04/27/2023 20:52] codingnamekiki
+:chefskiss:
+
+
+[04/27/2023 21:13] mgf15
+no luck this time i start at 10:50 finish at 11:02 ;')
+
+{Reactions}
+empathy (6) 
+
+[04/28/2023 01:54] 0xvolodya
+@TheyCallMeCosmic Hey, are there  Smart Contract Security Review #1 from sigma prime? I am asking due to this line in the report
+> EigenLayer
+> Smart Contract Security Review #2
+
+{Reactions}
+same 
+
+[04/28/2023 01:59] thekmj
+I think this means Sigma Prime was their 2nd audit. The other was from Consensys Diligence
+
+{Reactions}
+👍 
+
+[04/28/2023 02:05] theycallmecosmic
+hi, yes, there was a prior audit from Sigma Prime on an earlier version of the codebase. all issues from this audit have been addressed, but we have not made the results of this audit public
+
+{Reactions}
+👍 (3) 
+
+[04/28/2023 02:06] 0xvolodya
+alright, thanks.
+
+
+[04/28/2023 02:08] 0xstalin
+Hey @TheyCallMeCosmic I know you guys had a Twitter space with some folks of C4 where you talked about what you are looking for out of this contest
+Unfortunately, I haven't listened to the recording, apart from what's mentioned in the Scoping Details in the Contest Description, what would you say are the main points of concern for the team?
+
+
+[04/28/2023 02:11] thekmj
+I got like 31 failing tests (and 266 passes), `.env` is identical to `.env.example`. Is this expected?
+
+
+[04/28/2023 02:13] theycallmecosmic
+pretty much what's in the scoping details, tbh
+in the Twitter space I explained a bit about how EigenPods do "native restaking" of ETH, where beacon chain withdrawal credentials are pointed to EigenPods and then (once the oracle is enabled), proofs will be done against beacon chain state roots. These proofs are quite complex and are meant to match the Beacon Chain spec, so it's an important aspect of the protocol that is clearly quite challenging to get right. Looking into this also means understanding a bit more about the Beacon Chain, which is cool 🙂
+
+{Reactions}
+🫡 (3) 
+
+[04/28/2023 02:16] theycallmecosmic
+you should have 0 failing tests. this might be something to do with your foundry version? will investigate a bit myself.
+IIRC we only have 1 mainnet fork test right now. the free LlamaNodes RPC in the `.env.example` file should be fine for running this
+
+
+[04/28/2023 02:16] thekmj
+alright I'll double check in a bit and get back
+
+{Reactions}
+👍 
+
+[04/28/2023 02:18] theycallmecosmic
+cool. I would suggest running `foundryup` and retrying, if you haven't already
+
+
+[04/28/2023 02:21] thekmj
+Ok confirming it was the issue. One `foundryup` fixes it.
+
+Another thing, this line is causing `[FAIL. Reason: No prank in progress to stop]`. 
+<https://github.com/code-423n4/2023-04-eigenlayer/blob/main/src/test/DepositWithdraw.t.sol#L320>
+
+Commenting out such line gives the pass as well
+
+{Reactions}
+👍 (2) 
+
+[04/28/2023 02:21] thekmj
+~~Or it was line 316~~ both should work as intended by the looks of it
+
+
+[04/28/2023 02:22] theycallmecosmic
+cool, thanks. would fix it myself if the repo didn't have to stay frozen
+
+{Reactions}
+👍 
+
+[04/28/2023 02:54] 0xnirlin
+Any good resource to learn about ins and outs of beacon chain and staking?
+
+
+[04/28/2023 03:07] theycallmecosmic
+I personally think the ethereum.org documentation is a decent starting place if you're unfamiliar with a lot of the details https://ethereum.org/en/staking/
+withdrawals in particular are quite nuanced https://ethereum.org/en/staking/withdrawals/
+
+
+[04/28/2023 04:17] theycallmecosmic
+for the deeper technical details, a comment in our BeaconChainProofs library links to a few sections of the consensus spec that we referenced https://github.com/Layr-Labs/eigenlayer-contracts/blob/master/src/contracts/libraries/BeaconChainProofs.sol#L9-L11
+
+{Embed}
+https://github.com/Layr-Labs/eigenlayer-contracts/blob/master/src/contracts/libraries/BeaconChainProofs.sol
+eigenlayer-contracts/BeaconChainProofs.sol at master · Layr-Labs/ei...
+Contribute to Layr-Labs/eigenlayer-contracts development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/eigenlayer-contracts-E44EA
+
+
+[04/28/2023 04:28] cjigsaw
+@TheyCallMeCosmic  dm'd you
+
+{Reactions}
+👍 
+
+[04/28/2023 06:45] thekmj
+help thread on running tests for @Sathish9098
+
+
+[04/28/2023 08:14] 0xnirlin
+If a staker delegates it assets to an operator and if operator misbehaves, stakers eth will be slashed?
+
+Getting punished for trusting the operator?
+
+
+[04/28/2023 08:15] 0xnirlin
+or am i getting it wrong?
+
+
+[04/28/2023 08:16] bytes032
+thats correct
+
+{Reactions}
+👍 (2) 
+
+[04/28/2023 08:23] cloudellie (pinned)
+**❗ Important note re: award pools** - the HM award pool listed in the repo has been corrected. Previously the bot race pool was included in the HM pool, but we have updated it for clarity. 
+
+Apologies for any confusion.
+
+{Reactions}
+thankyou (3) 
+
+[04/28/2023 09:26] cloudellie (pinned)
+Wardens - please note that the **automated findings output** (AKA the winning bot race report 🏆, submitted by @IllIllI) is posted below. 
+
+*These are considered publicly known issues and are not eligible for awards.*
+
+🤖 **Automated findings: **
+https://gist.github.com/CloudEllie/213965a3448230f5b615e7046f9dd26d
+
+📄 **Code4rena submission guidelines and automated findings policy: **
+https://docs.code4rena.com/roles/wardens/submission-policy#automated-findings-ineligible
+
+This will also be linked in the contest README file shortly.
+
+{Reactions}
+hi5 (5) 👍🏻 (2) 
+
+[04/28/2023 09:26] cloudellie
+Pinned a message.
+
+
+[04/28/2023 09:26] cloudellie
+Pinned a message.
+
+
+[04/28/2023 10:43] zaevlad
+@TheyCallMeCosmic dm you, thanks
+
+{Reactions}
+👍 
+
+[04/28/2023 13:14] sp1cymeatball
+@TheyCallMeCosmic dumb question, but how to get proofs that are used in `verifyWithdrawalCredentialsAndBalance` and other functions in `EigenPod`?
+
+
+[04/28/2023 14:05] 0xnirlin
+Since when eigenlayer have been in development?
+
+
+[04/28/2023 14:58] theycallmecosmic
+not a dumb question at all! we currently have a separate, dedicated repository for generating these proofs, but I don't think we're ready to make it public yet. will check with the rest of the team
+
+
+[04/28/2023 15:01] theycallmecosmic
+roughly 18 months, but that includes work on other projects + some of the ideation
+
+
+[04/28/2023 15:01] sp1cymeatball
+If user wants to call a `verifyWithdrawalCredentialsAndBalance` function he first needs to fetch a proof from some kind of API that lives on your server, right?
+
+
+[04/28/2023 15:11] theycallmecosmic
+or generate a proof themselves. we are doing proofs that simply match specifications for open source software, and intend to open source the proof generation software as well
+
+{Reactions}
+👍 (4) 
+
+[04/28/2023 19:43] co0nan
+@TheyCallMeCosmic I've a question about the scope, how does ISlasher.sol is in scope but Slasher.sol it not? so any issues on Slasher.sol is OOS ? and what if an issues inside Slasher.sol affect a function flow inside StrategyManager.sol ?
+
+
+[04/28/2023 20:27] theycallmecosmic
+hi, good question. So `Slasher.sol` is indeed OOS, so I would say that means any details of its implementation (i.e. code) are also OOS.
+As for the 2nd part of your question, my understanding of what should be in-scope is primarily the *usage* of the `ISlasher` interface. For example, if withdrawals did not actually check that `Slasher.canWithdraw` passes as outlined in the documentation (either by failing to make this call or failing to check the return value), this would break part of the system design & have significant negative impact.
+For the ascribed scope, since the Slasher is indeed another contract in the system, I think it is entirely reasonable  to assume:
+1) the Slasher is non-malicious
+2) the Slasher generally exhibits "correct"/intended behavior
+
+{Reactions}
+🙏🏼 
+
+[04/28/2023 20:31] evokid
+what is the entry point is it depositBeaconChainETH ?
+
+
+[04/28/2023 20:32] co0nan
+depositIntoStrategy  
+depositIntoStrategyWithSignature
+
+{Reactions}
+👍🏻 (2) 
+
+[04/29/2023 05:04] windowhan001
+I was wondering why DelegationManager.sol is not in the audit scope.
+It seems to me that this is a critical endpoint that could impact the security of the EigenLayer.
+
+{Reactions}
+☝️ 
+
+[04/29/2023 05:26] 0xnirlin
+Slasher too 🫠
+
+{Reactions}
+👍 
+
+[04/29/2023 06:02] kutugu
+Why is delay in blocks instead of timestamp?
+
+
+[04/29/2023 10:47] 0xjmaria
+Is the address of the `beaconChainETHStrategy` fixed? why?
+
+
+[04/29/2023 11:01] shealtielanz
+what of an instance of slashing, where a validator staked eth is slashed, meaning eigenpod wouldn't recieve your eth in the end.  I don't grasp how it handles that.
+
+
+[04/29/2023 11:15] infosec_us_team
+An off-chain system monitors when a validator is slashed, and records an overcommitment of stake to EigenLayer by calling the function `verifyOvercommittedStake(...)` in `EigenPod.sol` (an in-scope asset).
+
+Following the chain of execution of this function, you will realize that shares in the `beaconChainETHStrategy` will be reduced "accordingly", accounting for any call to `_withdrawBeaconChainETH(...)`.
+
+
+[04/29/2023 11:19] shealtielanz
+@infosec_us_team thanks alot, I had the idea but I just needed clarification
+
+
+[04/29/2023 13:21] 0xsurena
+delegation contract is out of Scope ?
+
+
+[04/29/2023 14:08] co0nan
+Yes, I understand that Strategy contracts can be created by anyone, however, I don't get the point of making Interfaces in-scope but the contract logic itself OOS! Slasher and delegationmanager seems a core contracts.
+
+{Reactions}
+❤️ 
+
+[04/29/2023 14:21] infosec_us_team
+The logic behind making only the interfaces as in-scope, is to suggest that calls that happen from an **in-scope asset** (like `StrategyManager.sol`) to an **out-of-scope asset** whose interface is in-scope (for example calls to `Slasher.canWithdraw(...)`) are within scope, but the rest of the code in `Slashed.sol` is not.
+
+Indeed, the smart contracts `Slasher.sol` and `DelegationManager.sol` are crucial to the well functioning of the protocol.
+
+But there could be valid reasons for them to be out of scope for this very specific contest. For example, it could be that: *The code in these two smart contracts will be heavily updated within the next few weeks, so the protocol does not want you to focus on finding bugs in them, instead want as many eyes as possible to check , `EigenPodManager.sol`, `EigenPod.sol`, `StrategyBase.sol`, `StrategyManager.sol`.*
+
+Which by the way, contains a few high vulnerabilities that both auditing companies missed. You can have plenty of fun just with them.
+
+{Reactions}
+👍 (7) 😂 🔥 
+
+[04/29/2023 14:23] co0nan
+that't clear now. So if a function in-scope calls another function defined on oos contract it still will be considered?
+
+
+[04/29/2023 14:23] theycallmecosmic
+we are opting for a staged rollout of EigenLayer; the initial launch is extremely limited in scope. There's a non-technical statement on this in our blog post here https://www.blog.eigenlayer.xyz/stage-1-testnet-announcement/
+Important for this contest is that the Slasher and DelegationManager contracts will be completely paused as part of this first deployment -- we intend to further audit these contracts prior to unpausing any of their functionality
+
+{Reactions}
+🫡 
+
+[04/29/2023 14:25] infosec_us_team
+Indeed. For example if you were flagged by the slasher to stop you from withdrawing funds, but you can still call `_completeQueuedWithdrawal(...)` from `StrategyManager.sol` and (with a smart quirk 😉 ) bypass the check in `slasher.canWithdraw(...)` or make the check revert for everybody calling `_completeQueuedWithdrawal(...)`, those are valid high findings.
+
+
+[04/29/2023 15:03] illilli000
+I am not familiar with the scenario here, but my understanding is that bugs in out-of-scope contracts are _not_ awarded, even if they impact in-scope contracts. I'll confirm with c4 staff when they're back on Monday
+
+
+[04/29/2023 15:55] infosec_us_team
+Thanks for paying attention to this matter. Please, do confirm with c4 staff, a large range of attack vectors will be impacted by their response.
+
+The safety of the funds managed by the `StrategyManager.sol` heavily relies upon mechanisms implemented in `Slasher.sol` like `isFrozen(...)` and `canWithdraw(...)`.
+
+--
+
+*Example:*
+
+Imagine the hypothetical scenario where a malicious depositor can not only steal funds from any strategy but also bypass all checks made by `isFrozen(...)` and `canWithdraw(...)`, avoiding the slashing mechanism to stop them from withdrawing all funds.
+
+Also, let's imagine that to reproduce this attack, the malicious depositor only needs to **directly** interact with the **in-scope asset**: `StrategyManager.sol` - he never directly calls any function in `Slasher.sol` or any other out-of-scope contract, he only sends transactions to `StrategyManager.sol`
+
+If a report like that, would be considered invalid and not paid, because part of its reproduction is based on bypassing checks that are defined in an out-of-scope asset, it would be a shame, not for us, but for the project. Because I'm confident that the project that is running this contest will benefit very much from being aware of (and fixing) such attacks.
+
+{Reactions}
+👆🏼 (4) 
+
+[04/29/2023 16:00] neumoxx
+As I understand it, if a given attack scenario relies on the contracts out of scope not working as intended by the protocol team, it should not be a valid finding.
+
+
+[04/29/2023 16:02] co0nan
+With that logic most findings  will not be valid as the core functions in `StrategyManager` for example relies on Slasher, delegationManager. I would suggest waiting for C4 team or the Sponsor team to confirm.
+
+{Reactions}
+🧠 
+
+[04/29/2023 16:44] t.nero
+EigenPod's logic is fixed and unmodifiable in the manager contract, but I'm curious about what if you want to extend more logic to the pod, or any changes, that is a possible scenario right?
+
+
+[04/29/2023 16:46] t.nero
+Or just having a new manager for the new pod version?
+
+
+[04/29/2023 17:18] 0xjmaria
+The number of shares for a specific strategy in the StrategyManager track balance must match the number of tokens transfered to the strategy by the user? or can these tokens remain in the StrategyManager contract without transfering them to the Strategy but increasing its shares??
+
+
+[04/29/2023 18:07] 0xnevi
+Hi i asked a similar question and heres @TheyCallMeCosmic response:
+
+going to copy-paste a couple messages for ya:
+it's entirely possible for `totalShares` to not be equal to the value returned by `_tokenBalance() `
+two examples are:
+1) any mechanism by which tokens are transferred directly to the contract (e.g. by an individual or a smart contract) without calling this function
+2) the contract holds a "rebasing token", which increases the contract's balance passively
+I agree however that for simple/"standard" ERC20 tokens and if all usage is as expected, the code block is unnecessary
+
+CryptoBanker — Yesterday at 5:10 PM
+was just pointing out that this behavior is possible.
+in general, sending tokens straight to the contract acts basically like a donation to all depositors in the Strategy. they operate similarly to tokenized vaults (ERC4626)
+the primary risk with constructions like this is share inflation attacks, which we have chosen to mitigate with our `MIN_NONZERO_TOTAL_SHARES` logic. there's a few different ways people have tried to solve this general problem. IIRC OpenZeppelin uses "virtual shares", for example, in their ERC4626 contract
+
+
+[04/29/2023 18:10] 0xjmaria
+Thanks for you answer but I was pointing to a different thing, related with StrategyManager
+
+
+[04/29/2023 18:18] mitja.gustin#5757
+Did anyone figure out naming conventions for this project ?  I really struggle with code like:   function initialize(address initOwner, IPauserRegistry _pauserRegistry, uint256 initPausedStatus, uint256 _withdrawalDelayBlocks).  Why are some  function parameters underscored and some not ?
+
+
+[04/29/2023 18:20] itsmetechjay
+Yes your understanding is correct.
+
+{Reactions}
+thankyou 
+
+[04/29/2023 18:35] 0xstalin
+so, this means that we should assume all out-of-scope contracts work correctly?
+
+
+[04/29/2023 18:44] itsmetechjay
+Not necessarily.  I'm agreeing that bugs submitted on out of scope code will not be awarded.
+
+
+[04/29/2023 18:48] 0xstalin
+and what about bugs that could be caused depending on "X,Y,Z" in an out-of-scope contract?
+should we treat OOS contracts like black boxes, assuming they will do correctly what they are supposed to do?
+
+
+[04/29/2023 18:50] co0nan
+Does StrategyManager keep track of shares for each each strategy?
+
+
+[04/29/2023 18:51] 0xjmaria
+Yes
+
+
+[04/29/2023 18:52] co0nan
+I see it do that for each stacker per each strategy, is this what you are refering to ?
+
+
+[04/29/2023 18:52] 0xjmaria
+Yes
+
+
+[04/29/2023 21:11] infosec_us_team
+To steal funds from the strategies a warden must:
+
+1- Break the internal accounting system in the in-scope assets `StrategyManager.sol` and `StratrgyBase.sol`
+
+2- Bypass any filter designed to stop you from withdrawing the funds like `isFrozen(...)` and `canWithdraw(...)`
+
+> you can't succeed with just point 1, you need to figure out point 2 as well.
+
+I took the time of beating not just one but both systems. Get rich in the smart contract, and unstoppable when withdrawing.
+
+Now it turns out, that this report would be invalid (so I'm not submitting it).
+
+@TheyCallMeCosmic is this the outcome the protocol is expecting from the contest? Not receiving reports explaining how to steal all funds because breaking point 2 (which is implemented in all withdrawing functions) is out of scope?
+
+If not, can the judges kindly reconsider based on the design of the codebase what will be counted as valid?
+
+The protocol is paying the same thing no matter how many reports they receive from us, so my goal with this is not to "profit", but to help the protocol get the most value out of this contest.
+
+{Reactions}
+👍 (6) 
+
+[04/29/2023 21:37] 0xjmaria
+Is the address of the `beaconChainETHStrategy` fixed? why?
+
+
+[04/29/2023 23:07] dravee
+The scope is the scope for rewards. If there are external requirements (OOS contracts), say for a POC on a vulnerability on the in-scope contracts, then you can use them in your POC but themselves being vulnerable is something that'll probably be just considered as a courtesy, as these OOS contracts are not to be audited.
+OOS aren't a penalty, you'd be actually giving a full attack vector if you digged into it instead of making convincing assumptions on these external requirements. But they are not in scope, therefore you won't be rewarded more from the prize pool, and won't take the share of others that only audited what was intended to be audited. The sponsor deciding on an external bounty from the contest's prize is another story that's not from C4's structure
+
+
+[04/29/2023 23:07] dravee
+@CloudEllie would love your thoughts here
+
+{Reactions}
+👍 
+
+[04/29/2023 23:45] shealtielanz
+✅️
+
+
+[04/30/2023 00:48] neutiyoo
+https://gist.github.com/CloudEllie/213965a3448230f5b615e7046f9dd26d?permalink_comment_id=4551623#gistcomment-4551623
+
+1M
+7 L
+15 R
+21 NC
+13 Ignored
+4 Disagree
+
+Hello, can you clarity the difference between `R` and `NC` in the comment please?
+
+@CloudEllie
+
+Here is my understanding:
+- `R` (Yes, this is a problem and we intend to fix it.)
+- `NC` (Yes, this is a problem and we intend to fix it.)
+
+{Embed}
+https://gist.github.com/CloudEllie/213965a3448230f5b615e7046f9dd26d?permalink_comment_id=4551623
+Automated findings for EigenLayer Code4rena audit - IllIllI-bot Bot...
+Automated findings for EigenLayer Code4rena audit - IllIllI-bot Bot Race submission - eigenlayer-bot-findings.md
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/gist-og-image-17482.png
+
+
+[04/30/2023 00:58] 0xjuancito
+Recommendations & Non-Critical I guess
+
+
+[04/30/2023 01:02] neutiyoo
+Thanks, I guess so.
+
+But I would like to know the difference between `R` and `NC` in the following:
+- `R` (Yes, this is a problem and we intend to fix it.)
+- `NC` (Yes, this is a problem and we intend to fix it.)
+- `Ignored` (Yes, technically the issue is correct, but we are not going to resolve it for xyz reasons.)
+- `Disagree` (No. It's incorrect.)
+
+I've referenced this.
+https://github.com/code-423n4/2023-01-opensea-findings/blob/main/README.md
+> ### Respond to issues
+> 
+> Label each open/primary High or Medium risk finding as one of these:
+> 
+> - `sponsor confirmed`, meaning: "Yes, this is a problem and we intend to fix it."
+> - `sponsor disputed`, meaning either: "We cannot duplicate this issue" or "We disagree that this is an issue at all."
+> - `sponsor acknowledged`, meaning: "Yes, technically the issue is correct, but we are not going to resolve it for xyz reasons."
+> 
+> (Note: please *don't* use `sponsor disputed` for a finding if you think it should be considered of lower or higher severity. Instead, use the label `disagree with severity` and add comments to recommend a different severity level -- and include your reasoning.)
+> 
+> Add any necessary comments explaining your rationale for your evaluation of the issue. Note that when the repo is public, after all issues are mitigated, wardens will read these comments.
+
+{Embed}
+https://github.com/code-423n4/2023-01-opensea-findings/blob/main/README.md
+2023-01-opensea-findings/README.md at main · code-423n4/2023-01-ope...
+Contribute to code-423n4/2023-01-opensea-findings development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/9bf1969c-f216-4671-9d9f-fb317ff44431-43292
+
+
+[04/30/2023 03:20] theycallmecosmic
+@infosec_us_team it seems like perhaps you are misinterpreting something here, as I think you have an extremely pessimistic interpretation of the scope which disagrees with my own understanding. 
+*if your description is indeed accurate* then it is my belief that the vulnerability you describe should be in-scope as already defined.
+Perhaps we have different interpretations of C4's statements?
+I'll point you towards this statement I made on the scoping as I understand it https://discord.com/channels/810916927919620096/1100711520456937602/1101605734074036365.
+
+There's no need to ask leading questions, obviously we want wardens to report all real vulnerabilities they find.
+The intention with limiting the scope was simply to focus on the scope of our initial launch and allow the contest to complete in a reasonable timeframe.
+
+
+[04/30/2023 04:03] bytes032
+I think as per C4 its going to be OOS though (correct me if I'm wrong)
+
+
+[04/30/2023 04:03] theycallmecosmic
+the `beaconChainETHStrategy` is a 'virtual' strategy for accounting purposes; it is not an actual deployed contract
+
+
+[04/30/2023 04:12] bytes032
+imo the warden should submit and let the judge decide
+
+{Reactions}
+💯 (2) hi5 
+
+[04/30/2023 04:13] theycallmecosmic
+Maybe we are disagreeing about what the "it" is here that could be in- or out- of scope. I believe that if @infosec_us_team's description is of a real, original bug in the StrategyManager + StrategyBase contracts, then it would be in-scope.
+I do not think it's fair or reasonable to make unrealistic assumptions about the behavior of our OOS contract implementations for the sake of lowering vulnerability severity or entirely excluding vulnerabilities, as @infosec_us_team  is very clearly suggesting. For example, in this particular case, it is IMO unreasonable to assume that the `Slasher.canWithdraw()` or `Slasher.isFrozen()` functions implement redundant safety measures that @infosec_us_team claims to have defeated, or that otherwise go well beyond the functionality outlined in the `ISlasher` interface or our documentation.
+
+{Reactions}
+💯 (6) 
+
+[04/30/2023 08:09] 0xnirlin
+Can anyone plz explain the following to me?
+
+EigenPods extensively use a Beacon State Root Oracle that will bring beacon state roots into Ethereum for every SLOTS_PER_HISTORICAL_ROOT slots (currently 8192 slots or ~27 hours) so that all intermediate state roots can be proven against the ones posted on the execution layer.
+
+
+[04/30/2023 08:09] 0xnirlin
+from  eigenpod docs
+
+
+[04/30/2023 09:55] lourenslinde
+Dunno if you got an answer, but from what I understand the bytecode in the EigenPodManager contract is the bytecode for the BeaconProxy i.e. type(BeaconProxy).creationCode and not the bytecode for the EigenPod. The EigenPod's use a BeaconProxy pattern and so you will update the EigenPod's centrally by pointing the Beacon contract to a new implementation.
+
+{Reactions}
+👍 
+
+[04/30/2023 12:45] 0xnirlin
+How to understand the BeaconChainProofs.sol , went straight above my head🤡
+
+
+[04/30/2023 13:03] whiteoakkong
+@TheyCallMeCosmic sent you a quick dm, thanks :Myoo_Love:
+
+{Reactions}
+👍 
+
+[04/30/2023 13:51] t.nero
+Oh, completely forgot about this q. I realized that I asked a wrong question couple hours after asking. I think the codebase really hit me hard 😂. Went dizzy for days.
+
+{Reactions}
+😂 
+
+[04/30/2023 15:39] 0xjmaria
+why only stake 32 eth when creating a ETH validator? and not more than 32?
+
+
+[04/30/2023 15:49] 0xjmaria
+@TheyCallMeCosmic can you DM me?
+
+
+[04/30/2023 15:50] theycallmecosmic
+DMs are open fren
+
+
+[04/30/2023 15:50] 0xjmaria
+I can not send, do not know why
+
+{Reactions}
+👍 
+
+[04/30/2023 15:52] theycallmecosmic
+if you stake more, my understanding is that the additional amount will be credited to you on the consensus layer, but then subsequently swept back out to your specified withdrawal credential through the automatic "partial withdrawal" process
+
+
+[04/30/2023 15:52] theycallmecosmic
+tried, says you only accept DMs from friends / my message to you can't be delivered
+
+
+[04/30/2023 15:53] 0xjmaria
+maybe now
+
+{Reactions}
+💯 
+
+[04/30/2023 17:31] 0xepley
+same bro,
+
+
+[04/30/2023 19:24] theycallmecosmic
+it is indeed quite complicated, as it essentially reproduces part of the logic of the beacon chain. looking at some of the EigenPod tests (https://github.com/Layr-Labs/eigenlayer-contracts/blob/master/src/test/EigenPod.t.sol) might help with understanding some of the intended usage, at least? 
+you can always run particular tests using foundry's `--match-test` flag; I find combining this with the super verbose `-vvvv` flag can be somewhat helpful
+
+
+[04/30/2023 19:40] theycallmecosmic
+pasting a response here for visibility (realized I had only sent this privately):
+this is because each state root of the beacon chain includes "historical roots" for the last 8191 slots. so you can prove that another root exists without posting every slot root
+
+
+[05/01/2023 02:47] shealtielanz
+This protocol is unique
+
+{Reactions}
+💯 (2) 
+
+[05/01/2023 07:42] bean.eth2
+just wondering; is this a special address `0xbeaC0eeEeeeeEEeEeEEEEeeEEeEeeeEeeEEBEaC0` ?
+
+
+[05/01/2023 07:44] bean.eth2
+or just a random address representing the native staking strategy
+
+
+[05/01/2023 09:20] securium
+Where can I read what the DelayedWithdrawalRouter contract is for?
+
+
+[05/01/2023 09:25] bean.eth2
+@TheyCallMeCosmic ; may be worth discussing here; what would be the expected behavior on the protocol if a staker stakes (through native staking and pointing to eigenPod as the withdrawer); and then they never run the validator so their effective PoS balance shrinks over time?
+
+
+[05/01/2023 09:31] toonvh
+Eventually the validator's beacon balance will fall under `REQUIRED_BALANCE` which means an overcommitment can be called on that validator
+
+{Reactions}
+🙏🏻 
+
+[05/01/2023 13:27] co0nan
+There is a time delay enforced between calling `queuedWithdraew` and `completeQueuedWithdrawl` by 12 blocks, right?
+
+
+[05/01/2023 14:08] road220
+up to `MAX_WITHDRAWAL_DELAY_BLOCKS`
+
+
+[05/01/2023 14:09] co0nan
+If I get the point they can't be called on same TX?
+
+
+[05/01/2023 14:33] alextheentreprenerd
+R means Refactoring, NC means Non-Critical
+
+R is an improvement to the code
+NC is a non-critical / informational finding
+
+{Reactions}
+thankyou (4) 👍 
+
+[05/01/2023 14:38] cloudellie
+This is a very good explanation of how C4's scope definitions are intended. 
+
+We're working internally to establish a clearer policy for sponsors and wardens on how to handle out of scope findings, but in the past, if a warden submitted a finding that was: 
+
+- out of scope, 
+- valid (according to the judge and sponsor), and 
+- **valuable to the sponsor** (i.e. H/M risk vulns) , 
+
+C4 has encouraged sponsors to compensate those wardens directly and separately (i.e. *not* from the C4 audit award pools).
+
+{Reactions}
+👍🏻 (4) 🫡 (2) thankyou 
+
+[05/01/2023 15:10] theycallmecosmic
+confirming this is the correct answer
+
+
+[05/01/2023 15:11] theycallmecosmic
+essentially just a "random" address
+
+{Reactions}
+❤️ 
+
+[05/01/2023 15:27] 0xlgtm
+Hi, is it safe to assume that tokens like ERC777, rebase tokens and fee on transfer tokens are all out of scope?
+
+
+[05/01/2023 15:37] theycallmecosmic
+I believe so, yes. potential attack vectors for these types of tokens have been reported in the Consensys Diligence audit, and our documentation should at least have clear notes warning against using these types of tokens
+
+{Reactions}
+👍 
+
+[05/01/2023 15:38] 0xlgtm
+thanks!
+
+
+[05/02/2023 11:36] santipu_
+@TheyCallMeCosmic DM'd you, thanks
+
+
+[05/02/2023 12:05] windowhan001
+@TheyCallMeCosmic Is solidityProofGen a program you created yourself? I've searched for it, but it doesn't return any results.
+
+
+[05/02/2023 14:22] windowhan001
+@coldcolgate
+
+
+[05/02/2023 14:28] 0xmichalis
+it looks like a staker delegates shares from all their strategies in a single operator, is that intentional? why not allow delegations per strategy?
+
+
+[05/02/2023 15:24] evokid
+Dmed you 👍🏻
+
+
+[05/02/2023 15:34] theycallmecosmic (pinned)
+hi, yes, this is a tool we've built in-house.
+we haven't yet open-sourced it, but we intend to.
+I realize this isn't exactly what you asked, but you're looking at EigenPods & thinking about beacon chain state, and it reminded me of this:
+
+Some key actions (which can be sequenced in various ways) we considered while analyzing our design were:
+EigenPod Actions
+withdrawBeforeRestaking
+verifyWithdrawalCredentials - Validator A
+verifyOvercommittedStake - Validator A
+verifyAndProcessWithdrawal - Validator A - Full Withdrawal
+verifyAndProcessWithdrawal - Validator A - Partial Withdrawal
+verifyWithdrawalCredentials - Validator B
+verifyOvercommittedStake - Validator B
+verifyAndProcessWithdrawal - Validator B - Full Withdrawal
+verifyAndProcessWithdrawal - Validator B - Partial Withdrawal
+
+Beacon Chain Actions
+Repoint WC - Validator A
+Partial Withdrawal Triggered - Validator A
+Full Withdrawal Completes - Validator A
+Repoint WC - Validator B
+Partial Withdrawal Triggered - Validator B
+Full Withdrawal Completes - Validator B
+
+in particular, I consider a withdrawal to be "completed" when "balance has been decremented on beacon chain and increased on the execution layer (i.e. the EigenPod's balance has increased)"
+
+{Reactions}
+❤️ (3) 
+
+[05/02/2023 15:35] 0xjmaria
+Hello guys! I created a Twitter thread that summarizes the Ethereum Staking glossary that may help you all with the EigenLayer competition https://twitter.com/devScrooge/status/1653421107129483264?s=20
+
+{Embed}
+devScrooge (@devScrooge)
+https://twitter.com/devScrooge/status/1653421107129483264?s=20
+As many of you may know, the @eigenlayer competition is currently live on @code4rena . It is based on staking using Ethereum's proof of stake system (Beacon Chain).
+As it is being challenging one I have been researching and would like to share my knowledge with you 🧵.
+Twitter
+
+{Reactions}
+👍 (4) 👊 
+
+[05/02/2023 15:37] carlitox477
+@TheyCallMeCosmic I sent u a dm
+
+{Reactions}
+👍 
+
+[05/02/2023 16:16] kartoonjoy
+Pinned a message.
+
+
+[05/02/2023 17:04] theycallmecosmic
+Ah, missed this. This is a good point. The current design is very much intentional and primarily chosen for simplicity, but it certainly *could* have been designed differently. Allowing a multiplicity of delegations would cause much higher storage and gas costs, in general, and would introduce new challenges in understanding when withdrawals should be completable.
+
+{Reactions}
+👍 (2) 
+
+[05/02/2023 18:55] shealtielanz
+that's where the watchers come in.
+
+{Reactions}
+🙂 (3) 🦉 
+
+[05/03/2023 10:25] bean.eth2
+i am wondering how other middleware can be "informed" that one of their supporters have their corresponding share slashed. It seems it would be difficult for gauges to track staker shares under this "reduceShare" mechanism
+
+
+[05/03/2023 10:25] bean.eth2
+just brainstorming; sensible design from my point of view
+
+{Reactions}
+🙂 
+
+[05/03/2023 14:22] csjaybit
+hello
+
+
+[05/03/2023 14:23] csjaybit
+gas optimzation not found in automatic findings can be reported?
+
+
+[05/03/2023 14:26] loserdavictor
+of course
+
+
+[05/03/2023 14:28] csjaybit
+does it matter whether same kind of bug has been found in automated findings? just asking
+
+
+[05/03/2023 14:30] loserdavictor
+if it is then you will not be rewarded for that instance but your report should be at least b grade and you will be rewarded possibly 1-3 digit if they are gas or qa
+
+
+[05/03/2023 14:31] csjaybit
+lol cause I have found some in previous ones but never reported
+
+
+[05/03/2023 14:33] loserdavictor
+i read too many stuff on gas like 7-8 articles/blogs and etc... but automated findings find most of them so i don't even try gas opts, even qa will be spotted by automated bots and few m/h, so i mostly try on h/m but never got any yet🐧 
+
+studying and trying.. that's it 🐧  good luck
+
+{Reactions}
+😢 
+
+[05/03/2023 14:34] csjaybit
+brutal
+
+{Reactions}
+🐧 
+
+[05/03/2023 14:34] csjaybit
+its not true not all gas and lows are found by bots
+
+{Reactions}
+❤️ 
+
+[05/03/2023 14:38] loserdavictor
+yep, i had 4-5 gas reps more than 70% is found by automated bots but did not add them bc i thought that won't get much in my first audit... 
+
+and since then never look for gas related 
+`also i think it would not be appropriate to spam the chat and continue the discussion on gas instead of the protocol in this channel`
+
+{Reactions}
+👍 
+
+[05/03/2023 15:49] carlitox477
+@TheyCallMeCosmic I sent u a dm 😄
+
+{Reactions}
+🫡 
+
+[05/03/2023 15:57] theycallmecosmic
+ah, missed it before, thanks for the ping 🙂
+
+{Reactions}
+👍 
+
+[05/03/2023 19:20] carlitox477
+I sent u another DM lol
+
+
+[05/04/2023 00:23] shealtielanz
+@IllIllI Let of of Gas issues if you want to sharpen your skills, it takes to much time and bots now do the work, so you're technically  competing with Bots lol
+
+
+[05/04/2023 06:12] 0xrizwan
+@TheyCallMeCosmic Please check DM.
+
+{Reactions}
+👍 
+
+[05/04/2023 08:07] chasethelight
+Don't be disheartened! There is alot of stuff bots cannot do, take a look at the gas optimisations done by @PopPunkOnChain (twitter) That cannot be automated anytime soon.  🙂
+
+
+[05/04/2023 14:19] lfzkoala#9479
+Just finished my auditing, good luck guys!
+
+
+[05/04/2023 16:13] namx05
+Hey, is this me or everyone getting the same error? I've tried changing the browser and network as well
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/image-2F2D7.png
+
+
+[05/04/2023 16:18] carlitox477
+When I try to use any of the `Operator` functions they revert, any idea how I can solve it?
+
+
+[05/04/2023 16:21] namx05
+Update: solved
+
+{Reactions}
+👍 
+
+[05/04/2023 19:13] evokid
+@TheyCallMeCosmic sent a quick DM
+
+
+[05/04/2023 19:56] windowhan001
+.
+
+
+[05/04/2023 19:59] windowhan001
+Is it possible to provide additional clarification to judges and developers after the contest ends?
+I may have run out of explanations while trying to find vulnerability and write a report 20 minutes before the end.
+I'm anxious because I can't see the report I wrote T_T
+
+
+[05/04/2023 20:02] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens  The **EigenLayer** contest is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest Admin if you have questions along the way!
+
+{Reactions}
+🚀 (20) 👽 (6) 🦋 (6) ✅ (8) 🫡 (6) 🇹🇷 (2) 
+
+[05/04/2023 20:05] windowhan001
+who is judger?
+
+
+[05/04/2023 20:17] d3e4
+What's up with the new "Issue type" field when submitting issues?
+
+
+[05/04/2023 20:39] carlitox477
+Really tough code! My admiration for those devs in charge of meekle and BeaconChainProof library!
+
+{Reactions}
+➕ (6) 🚀 (2) 
+
+[05/04/2023 21:26] 0xsmartcontractsamurai
+I bravely submitted two LOWs/QAs.
+💩
+
+{Reactions}
+🫡 (16) ✌🏻 (4) 🥳 (5) 🦋 (3) 👽 (2) 
+
+[05/05/2023 03:34] cjigsaw
+Had a good time auditing this project. submitted a couple mediums. we'll see how it goes. either way, this project is a dope addition to the ETH ecosystem.
+
+
+[05/05/2023 14:26] e.a.8306
+hi all
+
+
+[05/05/2023 15:20] alliums0517
+Eigen had me trippin 😩
+
+
+[05/05/2023 21:50] trustone_
+hey
+
+
+[05/14/2023 09:37] 0xepley
+submitted 1 high, lets see how it goes
+
+{Reactions}
+👊 (2) 
+
+[05/16/2023 02:19] windowhan001
+hey @TheyCallMeCosmic https://github.com/Layr-Labs/eigenlayer-contracts/pull/34
+Are the issues not fixed in the above link not recognized as vulnerabilities?
+
+{Embed}
+https://github.com/Layr-Labs/eigenlayer-contracts/pull/34
+Code4Rena Fixes by Sidu28 · Pull Request #34 · Layr-Labs/eigenlayer...
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/34-CBD22
+
+
+[05/16/2023 05:18] theycallmecosmic
+sorry, am confused by your wording. I believe we've marked all issues appropriately, currently moving forward on judging. There is one other PR related to an issue from the C4 contest (which was already merged) here https://github.com/Layr-Labs/eigenlayer-contracts/pull/36
+
+
+[05/16/2023 05:24] windowhan001
+Thankyou, i sent my dm to you. please check it 🙂
+
+
+[05/26/2023 16:36] cjigsaw
+👀
+
+{Reactions}
+thisisfine (5) cheers_badger praisethesun (2) 
+
+[06/10/2023 00:24] liveactionllamac4
+:code4rena: 💸 🎉 Awards for **EigenLayer**:
+
+$13,081.90 USDC » @0xTheC0der 
+$12,193.66 USDC » @volodya 
+$5,031.50 USDC » @windowhan001
+$3,177.34 USDC » Cyfrin ( @PatrickAlphaC, @giovannidisiena, @hansfriese, @0Kage, @alexroan & @carlitox477 ) 
+$2,972.95 USDC » @QiuhaoLi
+$2,566.01 USDC » @RaymondFam 
+$2,483.50 USDC » @juancito 
+$2,109.36 USDC » @Josiah  
+$1,978.72 USDC » @MiloTruck 
+$1,972.19 USDC » @Ruhum 
+$1,533.95 USDC » @pontifex 
+$1,515.54 USDC » @sashik_eth 
+$1,443.93 USDC » @SpicyMeatball 
+$1,443.93 USDC » @bin2chen  
+$1,443.93 USDC » @evmboi32 
+$1,443.93 USDC » @yjrwkk   
+$1,391.84 USDC » @code-cipher 
+$1,223.48 USDC » @ABA  
+$1,122.66 USDC » @neutiyoo  
+$1,063.04 USDC » @bytes032 
+$1,063.04 USDC » @rvierdiiev 
+$606.39 USDC » @0xWaitress  
+$534.79 USDC » @ToonVH  
+$528.25 USDC » @Dug  
+$528.25 USDC » @Haipls 
+$528.25 USDC » @Co0nan 
+$528.25 USDC » @d3e4 
+$339.00 USDC » @bughunter007  
+$267.39 USDC » @8olidity  
+$161.62 USDC » @ihtishamsudo   
+$161.62 USDC » @0xnev  
+$161.62 USDC » @NiSeR 
+$90.02 USDC » @naman1778  
+$90.02 USDC » @ReyAdmirado 
+$90.02 USDC » @clayj.eth  
+$90.02 USDC » tonisives 
+$90.02 USDC » @turvy_fuzz  
+$90.02 USDC » @0xSmartContract   
+$71.60 USDC » @0xlgtm 
+$71.60 USDC » @said  
+$71.60 USDC » @jasonxiale  
+$71.60 USDC » @btk  
+$71.60 USDC » @libratus 
+
+🏁 Findings summary
+---------------------------
+High risk findings: 13 total, 2 unique
+Med risk findings: 13 total, 2 unique
+Gas reports: 13
+QA reports: 26
+
+Awards will be distributed on Polygon within the next week. Congratulations, everyone! 💸 💸 💸
+
+Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.
+
+{Reactions}
+🔥 (16) 🎉 (11) 👍 (3) 🥳 (3) 👏 (3) 
+
+[06/10/2023 02:27] 0xvolodya
+Thank you!
+
+
+[06/10/2023 03:10] ihtishamsudo
+First reward in code4rena 🙂
+
+{Reactions}
+🎉 (9) 👏 (7) 
+
+[06/10/2023 04:32] devabdee
+MaShaaAllah. Awesone buddy. Really happy for you. Great job ❤️‍🔥👏
+
+{Reactions}
+❤️ (2) 
+
+[06/10/2023 05:07] turvec_dev
+Thanks alot 🔥
+
+
+[06/10/2023 05:14] lourenslinde
+Congratulations everyone!
+
+If anyone has a moment, I would greatly appreciate it if someone with backstage access takes a look at my submission - I'm sure it was valid as it was mitigated here (https://github.com/Layr-Labs/eigenlayer-contracts/pull/36).
+
+I'm at a loss for why it wasn't considered valid, I had a step by step explanation of the vulnerability and a PoC coded in foundry... It's a bit disheartening and I'm not sure what I'm doing wrong...
+
+If anyone has time to check it out, I would be extremely grateful. Thanks in advance!
+
+{Embed}
+https://github.com/Layr-Labs/eigenlayer-contracts/pull/36).
+Build software better, together
+GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 330 million projects.
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/github-logo-EE79A.png
+
+
+[06/10/2023 06:58] alextheentreprenerd
+Happy Saturday Loki, I will cover this during office hours for all to discuss, I'd like to say that a long conversation was had around that finding
+
+{Reactions}
+thankyou (4) 
+
+[06/10/2023 08:38] lourenslinde
+Thank you! I appreciate the response :gummy_wink:
+
+{Reactions}
+cheers_badger (2) thegraphLogo gummy_bear 
+
+[06/10/2023 11:05] 0xthec0der
+I am out of words. Thank you for this opportunity. :code4rena:
+
+{Reactions}
+🦾 (15) 🚀 (8) 👏 (15) praisethesun (5) cheers_badger (4) 🥳 (4) 
+
+[06/12/2023 12:26] cloudellie
+Big congrats to you!!
+
+{Reactions}
+💜 (4) 
+
+[06/12/2023 12:27] cloudellie
+Congratulations and welcome to the leaderboard!
+
+{Reactions}
+💜 (6) 
+
+[07/07/2023 05:45] lourenslinde
+Findings are out, yay!
+
+@Alex The Entreprenerd I see what you meant with a long discussion about that issue. 
+
+But I am a little confused by the comment on this finding: https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/193#issuecomment-1571879028. It is true rebase attacks were mitigated, but my PoC shows that the way the mitigation was implemented created a vulnerability for a possible griefing attack to lock stakers' funds, which the sponsor thought was a medium severity issue (https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/193#issuecomment-1544938521). This makes sense to me as high impact but low likelihood would give medium severity. 
+
+The issue was marked as a duplicate of https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/343, but issue 193 provides an attack path to pull the attack through to the conclusion of locking users' funds in the strategy as shown in the PoC (https://gist.github.com/lokithe5th/e095fbde849632c21641d0fbdf4a956f). This is quite different from 343's findings.
+
+In your comment here https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/343#issuecomment-1573389122, you comment that it has been mitigated somewhat to only cause a loss of yield (which is disputed by the sponsor below), but this does not take into account the possible locking of users' funds through griefing, by forcing a depositor's received shares to be below the minimum required to be able to withdraw).
+
+Any feedback would be appreciated, just really want to understand the reasoning here. It's quite daunting putting together a thorough report and seeing the vuln fixed as part of the audit, but the finding being invalidated and not understanding where it went wrong :gummy_wink:
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/finding-F1729.PNG
+
+{Embed}
+https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/343,
+Issues · code-423n4/2023-04-eigenlayer-findings
+Contribute to code-423n4/2023-04-eigenlayer-findings development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/d317b7fa-5a2e-4925-8917-31526e6ef367-0442A
+
+{Embed}
+https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/343
+No slippage protection when depositing funds into strategies · Issu...
+Lines of code https://github.com/code-423n4/2023-04-eigenlayer/blob/main/src/contracts/core/StrategyManager.sol#L655-L672 Vulnerability details Impact The internal function _depositIntoStrategy is ...
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/343-82B5B
+
+{Embed}
+https://github.com/code-423n4/2023-04-eigenlayer-findings/issues/193
+Share issuance by `StrategyBase` can be manipulated to lock stakers...
+Lines of code https://github.com/code-423n4/2023-04-eigenlayer/blob/5e4872358cd2bda1936c29f460ece2308af4def6/src/contracts/strategies/StrategyBase.sol#L99 Vulnerability details Impact The file affe...
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/193-79E20
+
+{Reactions}
+👀 
+
+[07/09/2023 16:53] alextheentreprenerd
+,First of all thank you for sendings your thoughts, and I hope this specific instance doesn't deter you from contributing in the future
+
+IMO you did everything right in terms of sending a well thought-out finding
+
+As you can see there are plenty of duplicates which make tracking some of the conversation more difficult
+
+Additionally, at that time I also had tried attacking the idea of rebasing of shares when a minimum amount (1e8 / 1e9) is forced
+
+Meaning that from my perspective I believe I have addressed why the finding is not of Medium Severity, but that may have been lost.
+
+The first aspect to the convo is to agree that the report boils down to:
+- Shares can be rebased, this causes % losses (due to integer division)
+- Due to shares rebasing, the last withdrawer can be griefed
+
+The aspect related to rebasing is detailed here:
+https://github.com/code-423n4/2023-04-eigenlayer-findings/discussions/461#discussioncomment-6101612
+
+The aspect related to the griefing is a decision I made in judging it as Low Severity and not as Medium Severity, because after thining about it, the griefing would happen only to the last withdrawer, and they would be forced to not withdraw up to 1e9 (maybe 1e9-1, has been a while), shares, meaning that they would:
+- Get griefed
+- Realized they must withdraw slightly less
+- Withdraw slightly less
+
+The loss would be worth around $ 0.00000186753
+
+For this reason I have chosen to downgrade all findings related to those 2 aspects
+
+In talking about this, I believe the mistake I made is not awarding you with at least a QA Report, because your finding is valid, but I had closed it due to how QAs are reported, imo the wise decision would have been to award you a QA report as a reward for your efforts
+
+I believe if you keep sending findings like these you'll have a great career but I think it was the correct decision to downgrade the findign to QA
+
+{Reactions}
+thankyou (2) 
+
+[07/10/2023 07:31] lourenslinde
+@Alex The Entreprenerd first I want to say thank you for taking the time to respond to my question. I can see this was a long discussion and that a lot of thought went in to the judging.
+
+This will be my final comment. I respect your decision as final and I really appreciate the time you've taken in responding to my question.  I'm definitely not deterred, just want to improve :gummy_wink: 
+
+I would disagree with the statement that only the last withdrawer can be griefed. The mitigation for the standard rebase attack exposed a vulnerability that allowed multiple users to be griefed at zero cost to the attacker, and could have locked all the funds for these users in the contract.
+
+I think this is what separated this issue 193 from the others as the sponsor noted here (https://github.com/code-423n4/2023-04-eigenlayer-findings/discussions/461#discussioncomment-6105039).
+
+Once again, there's no stress about this issue, it might mean that I should be clearer in my reports.
+
+Thank you for you guidance here :thankyou:
+
+**Edited for clarity and conciseness
+
+{Embed}
+https://github.com/code-423n4/2023-04-eigenlayer-findings/discussions/461
+Post Judge QA · code-423n4 2023-04-eigenlayer-findings · Discussion...
+🧑‍⚖️ Post-judging QA; deadline: June 6, 2023 10:00AM PST Please post feedback about specific findings on the relevant issue in this repo. More general feedback for the judge can be shared here. The...
+Code4rena - ARCHIVE-Q2-2023 - eigenlayer-apr27 [1100711520456937602].txt_Files/461-94B0E
+
+
+==============================================================
+Exported 184 message(s)
+==============================================================
