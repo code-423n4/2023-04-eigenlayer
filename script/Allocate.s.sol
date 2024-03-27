@@ -3,14 +3,28 @@ pragma solidity =0.8.12;
 
 import "./utils/Allocator.sol";
 import "./EigenLayerParser.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
 
 contract Allocate is Script, DSTest, EigenLayerParser {
+    using SafeMath for uint256;
+    address public owner;
+    using SafeMath for uint256;
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner, "Only the contract owner can call this function");
+        _;
+    }
     //performs basic deployment before each test
-    function run() external {
+    function run() external onlyOwner{
         // read meta data from json
         parseEigenLayerParams();
+        require(numStaker.add(numDis).add(50) > 0, "Invalid denominator");
 
-        uint256 wethAmount = eigenTotalSupply / (numStaker + numDis + 50); // save 100 portions
+        uint256 wethAmount = eigenTotalSupply.div(numStaker.add(numDis).add(50)); // save 100 portions
         vm.startBroadcast();
 
         Allocator allocator = new Allocator();
@@ -43,11 +57,21 @@ contract Allocate is Script, DSTest, EigenLayerParser {
     }
 }
 
-contract ProvisionWeth is Script, DSTest, EigenLayerParser {
+contract ProvisionWeth is Script, DSTest, EigenLayerParser ReentrancyGuard {
     uint256 wethAmount = 100000000000000000000;
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner, "Only the contract owner can call this function");
+        _;
+    }
     //performs basic deployment before each test
 
-    function run() external {
+    function run() external onlyOwner nonReentrant {
         vm.startBroadcast();
         // read meta data from json
         addressJson = vm.readFile("data/addresses.json");
@@ -58,7 +82,7 @@ contract ProvisionWeth is Script, DSTest, EigenLayerParser {
         emit log_uint(recipientPrivKey);
         address recipientAddr = cheats.addr(recipientPrivKey);
         weth.transfer(recipientAddr, wethAmount);
-        payable(recipientAddr).transfer(1 ether);
+        payable(recipientAddr).call.value(1 ether);
         vm.stopBroadcast();
         //approve dlsm
         vm.broadcast(recipientPrivKey);
